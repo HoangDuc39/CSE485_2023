@@ -1,3 +1,17 @@
+<?php
+declare(strict_types = 1); 
+session_start();
+                           
+require '../includes/database-connection.php';              
+require '../includes/functions.php';                       
+
+$sql = "select * from theloai;";        
+                     
+$articles = pdo($pdo, $sql)->fetchAll();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +62,7 @@
             <div class="col-sm">
                 <a href="add_category.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
+             
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -57,28 +72,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($articles as $article) { ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
+                            <th scope="row"><?= html_escape($article['ma_tloai']) ?></th>
+                            <td><?= html_escape($article['ten_tloai']) ?></td>
                             <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="edit_category.php?id=<?= $article['ma_tloai'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                             <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
+                                <a href="delete_category.php?id=<?= $article['ma_tloai'] ?>"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                       
+                        
+                        <?php } ?>
                     </tbody>
+                  
                 </table>
             </div>
         </div>

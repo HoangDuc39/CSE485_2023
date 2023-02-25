@@ -1,15 +1,53 @@
 <?php
-declare(strict_types = 1); 
+declare(strict_types = 1);                                    // Use strict types
+require '../includes/database-connection.php';                   // Create PDO object
+require '../includes/functions.php'; 
 session_start();
-                           
-require '../includes/database-connection.php';              
-require '../includes/functions.php';                       
+$author =  "";
+$author_err = "";
+ 
 
-$sql = "select * from tacgia;";        
-                     
-$articles = pdo($pdo, $sql)->fetchAll();
-
-
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    $input_author = trim($_POST["author"]);
+    if(empty($input_author)){
+        $author_err = "Please enter a author.";
+    } 
+     else{
+        $author = $input_author;
+    }
+    
+    
+    
+    
+    if(empty($author_err) ){
+        
+        $sql = "INSERT INTO tacgia (ma_tgia ,ten_tgia) VALUES (NULL,:author)";
+ 
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":author", $param_author);
+         
+            
+            // Set parameters
+            $param_author = $author;
+            
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                header("location: author.php");
+                exit();
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+         
+        // Close statement
+        unset($stmt);
+    }
+    
+    // Close connection
+    unset($pdo);
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +80,10 @@ $articles = pdo($pdo, $sql)->fetchAll();
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="category.php">Thể loại</a>
+                        <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
+                        <a class="nav-link" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
@@ -60,34 +98,19 @@ $articles = pdo($pdo, $sql)->fetchAll();
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-             
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($articles as $article) { ?>
-                        <tr>
-                            <th scope="row"><?= html_escape($article['ma_tgia']) ?></th>
-                            <td><?= html_escape($article['ten_tgia']) ?></td>
-                            <td>
-                                <a href="edit_author.php?id=<?= $article['ma_tgia'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href="delete_author.php?id=<?= $article['ma_tgia'] ?>"><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        
-                        <?php } ?>
-                    </tbody>
-                  
-                </table>
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
+                <span class="invalid-feedback"><?php echo $author_err;?></span>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="author" >
+                    </div>
+
+                    <div class="form-group  float-end ">
+                        <input type="submit" value="Thêm" class="btn btn-success">
+                        <a href="author.php" class="btn btn-warning ">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
