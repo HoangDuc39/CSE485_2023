@@ -1,6 +1,6 @@
 <?php
-declare(strict_types = 1);                                    // Use strict types
-require '../includes/database-connection.php';                   // Create PDO object
+declare(strict_types = 1);                                   
+require '../includes/database-connection.php';                  
 require '../includes/functions.php'; 
 session_start();
 $name = $address = $salary = "";
@@ -25,14 +25,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sql = "INSERT INTO theloai (ma_tloai,ten_tloai) VALUES (NULL,:category)";
  
         if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
+            
             $stmt->bindParam(":category", $param_category);
          
             
-            // Set parameters
+           
             $param_category = $category;
             
-            // Attempt to execute the prepared statement
+           
             if($stmt->execute()){
                 header("location: category.php");
                 exit();
@@ -41,11 +41,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
          
-        // Close statement
+        
         unset($stmt);
     }
     
-    // Close connection
+    
     unset($pdo);
 }
 ?>
@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     </header>
     <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+       
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>

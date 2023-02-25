@@ -1,21 +1,21 @@
 <?php
-declare(strict_types = 1);                                // Use strict types
-require 'includes/database-connection.php';               // Create PDO object
-require 'includes/functions.php';                         // Include functions
+declare(strict_types = 1);                                
+require 'includes/database-connection.php';               
+require 'includes/functions.php';                        
 
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
-if (!$id) {                                               // If no valid id
-    include 'page-not-found.php';                         // Page not found
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); 
+if (!$id) {                                               
+    include 'page-not-found.php';                        
 }
 
 $sql = "SELECT * FROM baiviet as bv
 JOIN tacgia    AS tg  ON bv.ma_bviet = tg.ma_tgia
 JOIN theloai      AS tl  ON bv.ma_bviet = tl.ma_tloai
-WHERE ma_bviet = :id  ;";         // SQL statement
+WHERE ma_bviet = :id  ;";         
 
-$article = pdo($pdo, $sql, [$id])->fetch();               // Get article data
-if (!$article) {                                          // If article not found
-    include 'page-not-found.php';                         // Page not found
+$article = pdo($pdo, $sql, [$id])->fetch();               
+if (!$article) {                                          
+    include 'page-not-found.php';                       
 }
 
 ?>

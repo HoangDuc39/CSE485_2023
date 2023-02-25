@@ -33,14 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sql = "UPDATE tacgia SET ten_tgia= :author WHERE ma_tgia  =:id";
  
         if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
+           
             $stmt->bindParam(":author", $param_author);
             $stmt->bindParam(":id", $param_id);
             
-            // Set parameters
+          
             $param_author = $author;
             $param_id = $id;
-            // Attempt to execute the prepared statement
+           
             if($stmt->execute()){
                 header("location: author.php");
                 exit();
@@ -49,11 +49,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
          
-        // Close statement
+       
         unset($stmt);
     }
     
-    // Close connection
+   
     unset($pdo);
 }
 ?>
@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     </header>
     <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+       
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
