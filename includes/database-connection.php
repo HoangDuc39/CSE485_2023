@@ -14,7 +14,7 @@ $options  = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];                                                                
 
-// DO NOT CHANGE ANYTHING BENEATH THIS LINE
+
 $dsn = "$type:host=$server;dbname=$db;port=$port;charset=$charset"; 
 try {                                                               
     $pdo = new PDO($dsn, $username, $password, $options);          

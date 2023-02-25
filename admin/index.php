@@ -1,3 +1,24 @@
+<?php
+declare(strict_types = 1); 
+session_start();
+ 
+// Kiem tra nguoi dung da dang nhap chua
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+    exit;
+}
+
+                              
+ require '../includes/database-connection.php';              
+require '../includes/functions.php';                       
+
+$sql = "select (SELECT COUNT(*) FROM baiviet ) as table1Count, (SELECT COUNT(*) FROM theloai ) as table2Count , (SELECT COUNT(*) FROM tacgia ) as table3Count , (SELECT COUNT(*) FROM users )as table4Count;";        
+                     
+$articles = pdo($pdo, $sql)->fetchAll();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +57,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="logout.php">Đăng xuất</a>
+                    </li>
                 </ul>
                 </div>
             </div>
@@ -48,12 +72,13 @@
             <div class="col-sm-3">
                 <div class="card mb-2" style="width: 100%;">
                     <div class="card-body">
+                    <?php foreach ($articles as $article) { ?>
                         <h5 class="card-title text-center">
                             <a href="" class="text-decoration-none">Người dùng</a>
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                        <?= html_escape($article['table4Count']) ?>
                         </h5>
                     </div>
                 </div>
@@ -67,7 +92,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            10
+                        <?= html_escape($article['table2Count']) ?>
                         </h5>
                     </div>
                 </div>
@@ -81,7 +106,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            20
+                        <?= html_escape($article['table3Count']) ?>
                         </h5>
                     </div>
                 </div>
@@ -95,12 +120,13 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                        <?= html_escape($article['table1Count']) ?>
                         </h5>
                     </div>
                 </div>
             </div>
         </div>
+        <?php } ?>
     </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
