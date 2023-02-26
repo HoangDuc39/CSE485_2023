@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:8806
--- Thời gian đã tạo: Th2 25, 2023 lúc 04:19 AM
+-- Thời gian đã tạo: Th2 25, 2023 lúc 02:13 PM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -92,22 +92,24 @@ INSERT INTO `tacgia` (`ma_tgia`, `ten_tgia`, `hinh_tgia`) VALUES
 
 CREATE TABLE `theloai` (
   `ma_tloai` int(10) UNSIGNED NOT NULL,
-  `ten_tloai` varchar(50) NOT NULL
+  `ten_tloai` varchar(50) NOT NULL,
+  `SLBaiViet` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `theloai`
 --
 
-INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`) VALUES
-(1, 'Nhạc trẻ'),
-(2, 'Nhạc trữ tình'),
-(3, 'Nhạc cách mạng'),
-(4, 'Nhạc thiếu nhi'),
-(5, 'Nhạc quê hương'),
-(6, 'POP'),
-(7, 'Rock'),
-(8, 'R&B');
+INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`, `SLBaiViet`) VALUES
+(1, 'Nhạc trẻ', NULL),
+(2, 'Nhạc trữ tình', NULL),
+(3, 'Nhạc cách mạng', NULL),
+(4, 'Nhạc thiếu nhi', NULL),
+(5, 'Nhạc quê hương', NULL),
+(6, 'POP', NULL),
+(7, 'Rock', NULL),
+(8, 'R&B', NULL),
+(9, 'Nhạc remix', NULL);
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,7 @@ INSERT INTO `theloai` (`ma_tloai`, `ten_tloai`) VALUES
 --
 
 CREATE TABLE `users` (
-  `user_name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -125,7 +127,7 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`user_name`, `password`, `id`) VALUES
+INSERT INTO `users` (`username`, `password`, `id`) VALUES
 ('hoangduc ', '1', 1);
 
 --
@@ -137,8 +139,8 @@ INSERT INTO `users` (`user_name`, `password`, `id`) VALUES
 --
 ALTER TABLE `baiviet`
   ADD PRIMARY KEY (`ma_bviet`),
-  ADD KEY `ma_tloai` (`ma_tloai`),
-  ADD KEY `ma_tgia` (`ma_tgia`);
+  ADD KEY `ma_tgia` (`ma_tgia`),
+  ADD KEY `ma_tloai` (`ma_tloai`);
 
 --
 -- Chỉ mục cho bảng `tacgia`
@@ -163,6 +165,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `tacgia`
+--
+ALTER TABLE `tacgia`
+  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT cho bảng `theloai`
+--
+ALTER TABLE `theloai`
+  MODIFY `ma_tloai` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
@@ -176,8 +190,8 @@ ALTER TABLE `users`
 -- Các ràng buộc cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
-  ADD CONSTRAINT `baiviet_ibfk_1` FOREIGN KEY (`ma_tloai`) REFERENCES `theloai` (`ma_tloai`),
-  ADD CONSTRAINT `baiviet_ibfk_2` FOREIGN KEY (`ma_tgia`) REFERENCES `tacgia` (`ma_tgia`);
+  ADD CONSTRAINT `baiviet_ibfk_1` FOREIGN KEY (`ma_tgia`) REFERENCES `tacgia` (`ma_tgia`),
+  ADD CONSTRAINT `baiviet_ibfk_2` FOREIGN KEY (`ma_tloai`) REFERENCES `theloai` (`ma_tloai`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
