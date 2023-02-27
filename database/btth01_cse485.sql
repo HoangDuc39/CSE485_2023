@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:8806
--- Thời gian đã tạo: Th2 25, 2023 lúc 02:13 PM
+-- Thời gian đã tạo: Th2 27, 2023 lúc 01:34 PM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -56,7 +56,8 @@ INSERT INTO `baiviet` (`ma_bviet`, `tieude`, `ten_bhat`, `ma_tloai`, `tomtat`, `
 (10, 'I\'m stronger', 'I\'m stronger', 7, 'Em không phải là người giỏi giấu cảm xúc, nhưng em lại là người giỏi đoán biết cảm xúc của người khác vậy nên đừng cố nói nhớ em, rằng mọi thứ chỉ là do hoàn cảnh. Và cũng đừng dối em rằng anh đã từng yêu em. Em nhắm mắt cũng cảm nhận được mà, thật đấy', 'Em không phải là người giỏi giấu cảm xúc, nhưng em lại là người giỏi đoán biết cảm xúc của người khác vậy nên đừng cố nói nhớ em, rằng mọi thứ chỉ là do hoàn cảnh. Và cũng đừng dối em rằng anh đã từng yêu em. Em nhắm mắt cũng cảm nhận được mà, thật đấy', 2, '2013-08-21 00:00:00', NULL),
 (11, 'Ôi Cuộc Sống Mến Thương', 'Ôi Cuộc Sống Mến Thương', 5, 'Có một câu nói như thế này \"Âm nhạc là một cái gì khác lạ mà hầu như tôi muốn nói nó là một phép thần diệu.Vì nó đứng giữa tư tưởng và hiện tượng, tinh thần và vật chất, mọi thứ trung gian mơ hồ thế đó mà không là thế đó giữa các sự vật mà âm nhạc hòa giải\"', 'Có một câu nói như thế này \"Âm nhạc là một cái gì khác lạ mà hầu như tôi muốn nói nó là một phép thần diệu.Vì nó đứng giữa tư tưởng và hiện tượng, tinh thần và vật chất, mọi thứ trung gian mơ hồ thế đó mà không là thế đó giữa các sự vật mà âm nhạc hòa giải\"', 2, '2011-10-09 00:00:00', NULL),
 (12, 'Cây và gió', 'Cây và gió', 7, 'Em và anh, hai đứa quen nhau thật tình cờ. Lời hát của anh từ bài hát “Cây và gió” đã làm tâm hồn em xao động. Nhưng sự thật phũ phàng rằng em chưa bao giờ nói cho anh biết những suy nghĩ tận sâu trong tim mình. Bởi vì em nhút nhát, em không dám đối mặt với thực tế khắc nghiệt, hay thực ra em không dám đối diện với chính mình.', 'Em và anh, hai đứa quen nhau thật tình cờ. Lời hát của anh từ bài hát “Cây và gió” đã làm tâm hồn em xao động. Nhưng sự thật phũ phàng rằng em chưa bao giờ nói cho anh biết những suy nghĩ tận sâu trong tim mình. Bởi vì em nhút nhát, em không dám đối mặt với thực tế khắc nghiệt, hay thực ra em không dám đối diện với chính mình.', 7, '2013-12-05 00:00:00', NULL),
-(13, 'Như một cách tạ ơn đời', 'Người thầy', 2, 'Ánh nắng cuối ngày rồi cũng sẽ tắt, dòng sông con đò rồi cũng sẽ rẽ sang một hướng khác. Nhưng việc trồng người luôn cảm thụ với chuyến đò ngang, cứ tần tảo đưa rồi lặng lẽ quay về đưa sang. Con đò năm xưa của Thầy nặng trĩu yêu thương, hy sinh thầm lặng.', 'Ánh nắng cuối ngày rồi cũng sẽ tắt, dòng sông con đò rồi cũng sẽ rẽ sang một hướng khác. Nhưng việc trồng người luôn cảm thụ với chuyến đò ngang, cứ tần tảo đưa rồi lặng lẽ quay về đưa sang. Con đò năm xưa của Thầy nặng trĩu yêu thương, hy sinh thầm lặng.', 8, '2014-01-02 00:00:00', NULL);
+(14, 'Như Anh Đã Thấy Em', 'Như Anh Đã Thấy Em', 1, 'Anh ngắm nhìn thêm, mây, sao và màn đêm long lanh của anh Anh lướt nhẹ trên từng câu hát, nơi những giấc mơ đã từng thổn thức với anh Và đôi khi anh, trầm ngâm thật lâu, vì nơi sâu nhất trong thâm tâm của anh Anh vẽ lại những bức tranh, ẩn chứa sâu trong sắc màu mỏng manh, mỏng manh.', 'Anh ngắm nhìn thêm, mây, sao và màn đêm long lanh của anh Anh lướt nhẹ trên từng câu hát, nơi những giấc mơ đã từng thổn thức với anh Và đôi khi anh, trầm ngâm thật lâu, vì nơi sâu nhất trong thâm tâm của anh Anh vẽ lại những bức tranh, ẩn chứa sâu trong sắc màu mỏng manh, mỏng manh.', 1, '2023-02-26 21:26:10', 'https://i.ytimg.com/vi/jk5gbjJMZ6M/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGC0gVCh_MA8=&rs=AOn4CLAH9UxF7fn3SMb7yoz59qpvhALB-g'),
+(15, 'CHỜ ĐỢI CÓ ĐÁNG SỢ', 'CHỜ ĐỢI CÓ ĐÁNG SỢ', 2, 'Đôi khi nhầm một chuyến xe Lại đưa chúng ta về nơi muốn đến Nhưng em lại chẳng muốn quay về, về nơi chúng ta dừng lại Anh gom từng vệt nắng cuối trời  để thắp sáng hi vọng rằng em sẽ trở về Chờ đợi đâu đáng sợ', 'Đôi khi nhầm một chuyến xe Lại đưa chúng ta về nơi muốn đến Nhưng em lại chẳng muốn quay về, về nơi chúng ta dừng lại Anh gom từng vệt nắng cuối trời  để thắp sáng hi vọng rằng em sẽ trở về Chờ đợi đâu đáng sợ', 4, '2023-02-26 21:31:44', 'https://i.ytimg.com/vi/IicCjXK55n4/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGH8gEyhAMA8=&rs=AOn4CLBnTL97n7LMeyvd3aPyEJ8S-pKENw');
 
 -- --------------------------------------------------------
 
@@ -165,10 +166,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `baiviet`
+--
+ALTER TABLE `baiviet`
+  MODIFY `ma_bviet` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT cho bảng `tacgia`
 --
 ALTER TABLE `tacgia`
-  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `theloai`
