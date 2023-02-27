@@ -1,3 +1,64 @@
+<?php
+declare(strict_types = 1);                           
+require '../includes/database-connection.php';                   
+require '../includes/functions.php'; 
+
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+$sql = "select ma_tloai,ten_tloai from theloai where ma_tloai = :id;";        
+                     
+$article = pdo($pdo, $sql, [$id])->fetch();   
+
+
+
+session_start();
+$name = $address = $salary = "";
+$name_err = $address_err = $salary_err = "";
+ 
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    $input_category = trim($_POST["category"]);
+    if(empty($input_category)){
+        $category_err = "Please enter a category.";
+    } 
+     else{
+        $category = $input_category;
+    }
+    
+    
+    
+    
+    if(empty($category_err) ){
+        
+        $sql = "UPDATE theloai SET ten_tloai= :category WHERE ma_tloai =:id";
+ 
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":category", $param_category);
+            $stmt->bindParam(":id", $param_id);
+            
+            // Set parameters
+            $param_category = $category;
+            $param_id = $id;
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                header("location: category.php");
+                exit();
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+         
+        // Close statement
+        unset($stmt);
+    }
+    
+    // Close connection
+    unset($pdo);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,19 +104,19 @@
 
     </header>
     <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+        
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="process_add_category.php" method="post">
+                <form action="" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã thể loại</span>
-                        <input type="text" class="form-control" name="txtCatId" readonly value="1">
+                        <input type="text" class="form-control" name="txtCatId" readonly value="<?= $article['ma_tloai'] ?>">
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "Nhạc trữ tình">
+                        <input type="text" class="form-control" name="category" value = "<?= $article['ten_tloai'] ?>">
                     </div>
 
                     <div class="form-group  float-end ">

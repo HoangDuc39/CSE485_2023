@@ -1,18 +1,21 @@
 <?php
-declare(strict_types = 1);                                // Use strict types
-require 'includes/database-connection.php';               // Create PDO object
-require 'includes/functions.php';                         // Include functions
+declare(strict_types = 1);                                
+require 'includes/database-connection.php';               
+require 'includes/functions.php';                        
 
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
-if (!$id) {                                               // If no valid id
-    include 'page-not-found.php';                         // Page not found
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); 
+if (!$id) {                                               
+    include 'page-not-found.php';                        
 }
 
-$sql = "SELECT * FROM baiviet WHERE ma_bviet = :id  ;";         // SQL statement
+$sql = "SELECT * FROM baiviet as bv
+JOIN tacgia    AS tg  ON bv.ma_bviet = tg.ma_tgia
+JOIN theloai      AS tl  ON bv.ma_bviet = tl.ma_tloai
+WHERE ma_bviet = :id  ;";         
 
-$article = pdo($pdo, $sql, [$id])->fetch();               // Get article data
-if (!$article) {                                          // If article not found
-    include 'page-not-found.php';                         // Page not found
+$article = pdo($pdo, $sql, [$id])->fetch();               
+if (!$article) {                                          
+    include 'page-not-found.php';                       
 }
 
 ?>
@@ -30,10 +33,10 @@ if (!$article) {                                          // If article not foun
                             <a href="" class="text-decoration-none"><?= html_escape($article['ten_bhat']) ?></a>
                         </h5>
                         <p class="card-text"><span class=" fw-bold">Bài hát: </span><?= html_escape($article['ten_bhat']) ?></p>
-                        <p class="card-text"><span class=" fw-bold">Thể loại: </span>Nhạc trữ tình</p>
+                        <p class="card-text"><span class=" fw-bold">Thể loại: </span><?= html_escape($article['ten_tloai']) ?></p>
                         <p class="card-text"><span class=" fw-bold">Tóm tắt: </span><?= html_escape($article['tomtat']) ?></p>
                         <p class="card-text"><span class=" fw-bold">Nội dung: </span><?= html_escape($article['noidung']) ?></p>
-                        <p class="card-text"><span class=" fw-bold">Tác giả: </span>Nguyễn Văn Giả</p>
+                        <p class="card-text"><span class=" fw-bold">Tác giả: </span><?= html_escape($article['ten_tgia']) ?></p>
 
                     </div>          
         </div>

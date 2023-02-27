@@ -1,47 +1,47 @@
 <?php
-declare(strict_types = 1);                                   
-require '../includes/database-connection.php';                  
+declare(strict_types = 1);                                    // Use strict types
+require '../includes/database-connection.php';                   
 require '../includes/functions.php'; 
 session_start();
-$name = $address = $salary = "";
-$name_err = $address_err = $salary_err = "";
+$author =  "";
+$author_err = "";
  
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     
-    $input_category = trim($_POST["category"]);
-    if(empty($input_category)){
-        $category_err = "Please enter a category.";
+    $input_author = trim($_POST["author"]);
+    if(empty($input_author)){
+        $author_err = "Please enter a author.";
     } 
      else{
-        $category = $input_category;
+        $author = $input_author;
     }
     
     
     
     
-    if(empty($category_err) ){
+    if(empty($author_err) ){
         
-        $sql = "INSERT INTO theloai (ma_tloai,ten_tloai) VALUES (NULL,:category)";
+        $sql = "INSERT INTO tacgia (ma_tgia ,ten_tgia) VALUES (NULL,:author)";
  
         if($stmt = $pdo->prepare($sql)){
-            
-            $stmt->bindParam(":category", $param_category);
+           
+            $stmt->bindParam(":author", $param_author);
          
             
            
-            $param_category = $category;
+            $param_author = $author;
             
-           
+         
             if($stmt->execute()){
-                header("location: category.php");
+                header("location: author.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
          
-        
+       
         unset($stmt);
     }
     
@@ -95,21 +95,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     </header>
     <main class="container mt-5 mb-5">
-       
+      
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
-                <span class="invalid-feedback"><?php echo $category_err;?></span>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
                 
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="category" >
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="author" >
                     </div>
 
                     <div class="form-group  float-end ">
                         <input type="submit" value="Thêm" class="btn btn-success">
-                        <a href="category.php" class="btn btn-warning ">Quay lại</a>
+                        <a href="author.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
             </div>
@@ -117,7 +116,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
-       
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
