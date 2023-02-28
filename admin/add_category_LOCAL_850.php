@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types = 1);                                   
 require '../includes/database-connection.php';                  
 require '../includes/functions.php'; 
@@ -36,17 +35,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            
             if($stmt->execute()){
                 header("location: category.php");
-
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
          
-
         
         unset($stmt);
     }
+    
     
     unset($pdo);
 }
@@ -101,7 +99,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
-
                 <span class="invalid-feedback"><?php echo $category_err;?></span>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="input-group mt-3 mb-3">

@@ -15,6 +15,7 @@ $articles = pdo($pdo, $sql)->fetchAll();
 <?php require_once 'includes/header.php'; ?>
 <?php require_once 'includes/slider.php'; ?>
 
+
     <main class="container-fluid mt-3">
         <h3 class="text-center text-uppercase mb-3 text-primary">TOP bài hát yêu thích</h3>
         <div class="row">

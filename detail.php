@@ -13,6 +13,7 @@ JOIN tacgia    AS tg  ON bv.ma_bviet = tg.ma_tgia
 JOIN theloai      AS tl  ON bv.ma_bviet = tl.ma_tloai
 WHERE ma_bviet = :id  ;";         
 
+
 $article = pdo($pdo, $sql, [$id])->fetch();               
 if (!$article) {                                          
     include 'page-not-found.php';                       
