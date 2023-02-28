@@ -31,19 +31,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $password = trim($_POST["password"]);
     }
-    
+
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM users WHERE username = :username";
+        $sql = "SELECT id, username, password FROM users WHERE username = :username and password = :password";
         
         if($stmt = $pdo->prepare($sql)){
             $param_username = trim($_POST["username"]);
+            $param_password = trim($_POST["password"]);
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam("username", $param_username, PDO::PARAM_STR);
-                   
+            $stmt->bindParam("password", $param_password, PDO::PARAM_STR);
+           
+           
+            
             // Attempt to execute the prepared statement
             $stmt->execute();
+           
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
